@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic HTML Structure</title>
+
+
+
+</head>
+<body>
+    <div>
+        <h1>Test</h1>
+    </div>
+
+
+    <script>
+        (function (window, document, scriptId, scriptTag) {
+            console.log("window =>"+ window);
+            console.log("document =>"+document);
+            console.log("scriptId =>"+ scriptId);
+            console.log("scriptTag =>"+scriptTag);
+
+          function loadCannySDK() {
+              // Check if the script with the given ID already exists
+              if (!document.getElementById(scriptId)) {
+                  // Get the first script tag in the document
+                  var firstScript = document.getElementsByTagName(scriptTag)[0];
+                  // Create a new script element
+                  var newScript = document.createElement(scriptTag);
+                  newScript.type = "text/javascript";  // Set the script type
+                  newScript.async = true;  // Set the script to load asynchronously
+                  newScript.src = "http://localhost:8081/canny.sdk.js";  // Set the script source URL
+                  
+                  // Insert the new script before the first script tag in the document
+                  firstScript.parentNode.insertBefore(newScript, firstScript);
+              }
+          }
+      
+          // Check if the Canny function is already defined
+          if (typeof window.Canny !== "function") {
+              var kundalPlaceholder = function () {
+                console.log("arguments =>" + arguments);
+                  kundalPlaceholder.q.push(arguments);  // Queue up the arguments for later execution
+              };
+              kundalPlaceholder.q = [];  // Initialize the queue
+              window.Canny = kundalPlaceholder;  // Assign the placeholder to window.Canny
+          }
+      
+          // Check if the document is already fully loaded
+          if (document.readyState === "complete") {
+              loadCannySDK();  // If the document is fully loaded, load the Canny SDK immediately
+          } else if (window.attachEvent) {
+              // For older IE versions, use attachEvent to load the SDK after the window has loaded
+              window.attachEvent("onload", loadCannySDK);
+          } else {
+              // For modern browsers, use addEventListener to load the SDK after the window has loaded
+              window.addEventListener("load", loadCannySDK, false);
+          }
+      })(window, document, "kundal-jssdk", "script");
+
+      </script>
+
+    <script>
+        Canny('identify', {
+          appID: '669694346293b58c9f651523',
+          user: {
+            // Replace these values with the current user's data
+            email: 'devendramistri@gmail.com',
+            name: 'Devendram Mistri',
+            id: '1234567890',
+        
+            // These fields are optional, but recommended:
+            avatarURL: 'https://example.com/profile.pic',
+            created: null, // new Date(user.created).toISOString(),
+          },
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+{% load static i18n %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>
+      {% block title %}
+      fidbk
+    {% endblock title %}
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+        content="A saas toolkit for customer feedback and roadmap management" />
+  <meta name="author"
+        content="Devendra Mistri" />
+  <meta name="theme-color" content="#7952b3">
+  <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
+  {% block css %}
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+          integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+<!-- Your stuff: Third-party CSS libraries go here -->
+<!-- This file stores project-specific CSS -->
+
+  
+  <link href="{% static 'css/project.css' %}" rel="stylesheet" />
+
+
+{% endblock css %}
+<!-- Le javascript
+    ================================================== -->
+{# Placed at the top of the document so pages load faster with defer #}
+{% block javascript %}
+
+
+<!-- Bootstrap JS -->
+<script defer
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+        integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Your stuff: Third-party javascript libraries go here -->
+
+
+<!-- place project specific Javascript in this file -->
+
+  
+  <script defer src="{% static 'js/project.js' %}"></script>
+  
+  <script src="https://unpkg.com/htmx.org@2.0.1"></script>
+   
+{% endblock javascript %}
+
+
+{% block inline_css %}
+{% endblock inline_css %}
+</head>
+<body class="{% block bodyclass %}{% endblock bodyclass %}">
+  {% block body %}
+       
+    <div class="container-fluid">
+      
+      <div class="row">
+        <div class="col-2">
+          {% include 'nav.html' %}
+        </div>
+        
+        <div class="col-10">
+
+          <div class="row">
+            <div class="d-flex align-items-center p-3 my-3 rounded shadow-sm">
+              <div class="lh-1">
+                {% block page_navigation %}
+                {% endblock page_navigation %}
+              </div>
+            </div>
+          </div>
+              
+            <div class="row">
+              {% if messages %}
+                {% for message in messages %}
+                  <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                    {{ message }}
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert"
+                            aria-label="Close"></button>
+                {% endfor %}
+              {% endif %}
+
+            </div> <!-- Messages Row -->
+
+
+            <div class="row d-flex align-items-center p-3 my-3 rounded shadow-sm">
+                {% block main %}
+                      {% block content %}
+                        Your content goes here.
+                      {% endblock content %}
+                {% endblock main %}
+            </div>
+        </div>
+      </div>
+
+     </div> <!-- /container -->
+
+  {% endblock body %}
+  
+  {% block modal %}
+  {% endblock modal %}
+  {% block inline_javascript %}
+    {% comment %}
+    Script tags with only code, no src (defer by default). To run
+    with a "defer" so that you run inline code:
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        /* Run whatever you want */
+      });
+    </script>
+    {% endcomment %}
+  {% endblock inline_javascript %}
+
+  {% csrf_token %}
+</body>
+</html>

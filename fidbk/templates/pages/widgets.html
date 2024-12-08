@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+
+{% block page_navigation %}
+<h1>Widgets</h1>
+{% endblock page_navigation %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+        <div id="subscribe-form"></div>
+    </div>
+</div>
+
+<script>
+    (function (window, document, scriptId){
+        function loadKundalSDK() {
+            // Check if the script with the given ID already exists
+            if (!document.getElementById(scriptId)) {
+                // Get the first script tag in the document
+                var firstScript = document.getElementsByTagName('script')[0];
+                // Create a new script element
+                var newScript = document.createElement('script');
+                newScript.type = "text/javascript";  // Set the script type
+                newScript.async = true;  // Set the script to load asynchronously
+                newScript.src = "http://localhost:8081/kundal.sdk.js";  // Set the script source URL
+                
+                // Insert the new script before the first script tag in the document
+                firstScript.parentNode.insertBefore(newScript, firstScript);
+            }
+        }
+
+
+        // Check if the Kundal function is already defined
+        if (typeof window.Kundal !== "function") {
+            var kundalPlaceholder = function () {
+                // console.log(arguments);
+                kundalPlaceholder.q.push(arguments);  // Queue up the arguments for later execution
+            };
+            kundalPlaceholder.q = [];  // Initialize the queue
+            window.Kundal = kundalPlaceholder;  // Assign the placeholder to window.Kundal
+        }
+
+        if (document.readyState === "complete") {
+            console.log("Document is loaded.");
+            loadKundalSDK();
+        } else if (window.attachEvent) {
+            console.log("Document is loaded. Old IE Browsers.")
+            window.attachEvent("onload", loadKundalSDK);
+        } else {
+            window.addEventListener("load", function(){
+                loadKundalSDK();
+                // console.log("Document is loaded. Modern Browsers.")
+            }, false);
+        }
+
+    })(window, document, "kundal-sdk");
+</script>
+
+
+<script>
+Kundal('subscribe_box', {
+    appID: '4565165e-8fbb-42ac-b550-d534c637f14c',
+    elementID: "subscribe-form"
+});
+</script>
+
+{% endblock content %}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <script src="https://cdn.amplitude.com/libs/analytics-browser-2.7.4-min.js.gz"></script>
+        <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.6.8-min.js.gz"></script>
+        <script src="https://cdn.amplitude.com/libs/plugin-autocapture-browser-0.9.0-min.js.gz"></script>
+        <script>
+            window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1})).promise.then(function() {
+                window.amplitude.add(window.amplitudeAutocapturePlugin.plugin());
+                window.amplitude.init('70df863a2872aa6f357dc954ff6e7887');
+            });
+        </script> -->
+
+        <!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+        integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+
+        <!-- Bootstrap JS -->
+        <script defer
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+        integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+        
+        <script src="http://localhost:8081/kundal.sdk.js"></script>
+
+    </head>
+
+        <style>
+        body, html {
+        height: 100%;
+        margin: 0;
+        }
+
+        .bgimg {
+        background-image: url('./images/background.png');
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        color: #0070c0;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 25px;
+        }
+
+        .topleft {
+        position: absolute;
+        top: 10px;
+        left: 100px;
+        }
+
+        .bottomleft {
+        position: absolute;
+        bottom: 0;
+        left: 16px;
+        }
+
+        .middle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        }
+
+        hr {
+        margin: auto;
+        width: 40%;
+        }
+        </style>
+<body>
+
+<div class="bgimg">
+  <div class="topleft">
+    <p><img height="100" src="./images/logo.png" /></p>
+  </div>
+  <div class="middle">
+    
+
+    <div class="row">
+        <div class="col-12">
+            <h1>Contact Us:</h1>
+            <div id="contact-form" ></div>        
+        </div>        
+    </div>
+    <div class="row">
+      <div class="col-12">
+          <a href="/">Subscribe!</a>
+      </div>
+    </div>    
+    
+
+
+
+  </div>
+  <div class="bottomleft">
+    <p></p>
+  </div>
+</div>
+
+
+<script>
+  render_contact_box("contact-form", "e039532b-ac82-49c6-a666-6c8b74fb437c"); // All contacts to dataengineer.co.in
+</script>
+
+</body>
+</html>
+
+
+    
+    
+
+<!-- <script>!function(w,d,i,s){function l(){if(!d.getElementById(i)){var f=d.getElementsByTagName(s)[0],e=d.createElement(s);e.type="text/javascript",e.async=!0,e.src="https://canny.io/sdk.js",f.parentNode.insertBefore(e,f)}}if("function"!=typeof w.Canny){var c=function(){c.q.push(arguments)};c.q=[],w.Canny=c,"complete"===d.readyState?l():w.attachEvent?w.attachEvent("onload",l):w.addEventListener("load",l,!1)}}(window,document,"canny-jssdk","script");</script>
+
+<script>
+Canny('identify', {
+  appID: '669694346293b58c9f651523',
+  user: {
+    // Replace these values with the current user's data
+    email: user.email,
+    name: user.name,
+    id: user.id,
+
+    // These fields are optional, but recommended:
+    avatarURL: user.avatarURL,
+    created: new Date(user.created).toISOString(),
+  },
+});
+</script> -->

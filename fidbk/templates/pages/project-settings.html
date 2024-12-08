@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block inline_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+{% endblock inline_css %}
+
+
+{% block page_navigation %}
+<h2>Settings</h2>
+<p>Copy and paste following code in your website page where you want to show subscribe options.</p>
+{% endblock page_navigation %}
+
+
+{% block content %}
+
+
+    <h3>Put following code within HEAD tag</h3>
+<pre>
+<code>
+{% filter force_escape %}
+{{sdk_js}}
+{% endfilter %}
+</code>
+</pre>
+    <h3>Put following code at the end of the BODY</h3>
+<pre>
+<code>
+{% filter force_escape %}
+{{subscribe_js}}
+{% endfilter %}
+</code>
+</pre>
+</p>
+
+{% endblock content %}
+
+{% block inline_javascript %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+{% endblock inline_javascript %}

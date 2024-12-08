@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<form action="{% url 'feedback:select-company' %}" method="post">
+    {% csrf_token %}
+    <select class="form-select" name="company" aria-label="Select option" onchange="this.form.submit()">
+        <option selected>Select Option</option>
+        {% for company in companies %}
+        <option value="{{company.id}}">{{company.data.name}}</option>
+        {% endfor %}
+    </select>
+</form>
+
+{% endblock content %}
